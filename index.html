@@ -118,10 +118,24 @@
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.3s ease;
+            margin: 0 0.5rem;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-black);
+            color: var(--primary-black);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         /* Features Section */
@@ -371,6 +385,17 @@
             .about p {
                 padding: 0 1.5rem;
             }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                margin: 0.5rem 0;
+                width: 80%;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -388,7 +413,7 @@
             </button>
             <div class="nav-links">
                 <button class="close-menu" aria-label="Close menu"></button>
-                <a href="#">Blog</a>
+                <a href="https://medium.com/@codedparts">Blog</a>
                 <a href="https://tools.codedparts.com">Tools</a>
                 <a href="#">Resources</a>
                 <a href="#about">About</a>
@@ -400,7 +425,11 @@
         <div class="container">
             <h1>Master Software Engineering<br>One Concept at a Time</h1>
             <p>Level up your programming skills with comprehensive tutorials, practical examples, custom tools, and expert insights.</p>
-            <a href="#get-started" class="cta-button">Get Started</a>
+            <div class="cta-buttons">
+                <a href="https://tools.codedparts.com" class="cta-button">Explore Tools →</a>
+                <a href="https://youtube.com/@codedparts" class="cta-button secondary">Watch Tutorials</a>
+                <a href="https://medium.com/@codedparts" class="cta-button secondary">Read Articles</a>
+            </div>
         </div>
     </section>
 
