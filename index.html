@@ -53,6 +53,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -65,6 +66,14 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+        }
+
+        .menu-button {
+            display: none;
+        }
+
+        .close-menu {
+            display: none;
         }
 
         .nav-links a {
@@ -146,21 +155,155 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            header {
+                padding: 1rem 0;
+            }
+
+            .menu-button {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 1001;
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-button span {
+                display: block;
+                width: 25px;
+                height: 2px;
+                background-color: var(--primary-black);
+                margin: 2px 0;
+                transition: all 0.3s ease;
+            }
+
+            .menu-button.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-button.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-button.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .close-menu::before,
+            .close-menu::after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 2px;
+                background-color: var(--primary-white);
+                top: 50%;
+                left: 50%;
+                transition: background-color 0.3s ease;
+            }
+
+            .close-menu::before {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .close-menu::after {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            .close-menu:hover::before,
+            .close-menu:hover::after {
+                background-color: #999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                padding: 0 1rem;
+            }
+
+            .hero p {
+                padding: 0 1rem;
+                font-size: 1.1rem;
             }
 
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -250px;
+                height: 100vh;
+                width: 250px;
+                background-color: var(--primary-black);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                display: flex;
+                gap: 1.5rem;
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                color: var(--primary-white);
+                font-size: 1.2rem;
+                padding: 0.5rem 0;
+            }
+
+            .close-menu {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                padding: 0;
+                display: block;
             }
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <header>
         <nav class="container">
             <a href="#" class="logo">Coded Parts</a>
+            <button class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
+                <button class="close-menu" aria-label="Close menu"></button>
                 <a href="#features">Features</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
@@ -194,5 +337,31 @@
             </div>
         </div>
     </section>
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.overlay');
+        const closeMenu = document.querySelector('.close-menu');
+
+        function closeNavMenu() {
+            menuButton.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        menuButton.addEventListener('click', () => {
+            menuButton.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', closeNavMenu);
+        closeMenu.addEventListener('click', closeNavMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', closeNavMenu);
+        });
+    </script>
 </body>
 </html>
