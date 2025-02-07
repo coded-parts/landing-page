@@ -154,6 +154,68 @@
             font-size: 1.5rem;
         }
 
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background-color: var(--primary-white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary-black);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--secondary-black);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -290,6 +352,25 @@
                 padding: 0;
                 display: block;
             }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .about h2 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .about p {
+                padding: 0 1.5rem;
+            }
         }
     </style>
 </head>
@@ -307,10 +388,10 @@
             </button>
             <div class="nav-links">
                 <button class="close-menu" aria-label="Close menu"></button>
-                <a href="https://blog.codedparts.com">Blog</a>
+                <a href="#">Blog</a>
                 <a href="https://tools.codedparts.com">Tools</a>
                 <a href="#">Resources</a>
-                <a href="#">About</a>
+                <a href="#about">About</a>
             </div>
         </nav>
     </header>
@@ -341,6 +422,32 @@
             </div>
         </div>
     </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Coded Parts</h2>
+                <p>Hi, I'm Parthipan, a software engineer with over a decade of experience in building scalable applications. Throughout my career, I've worked with various technologies and frameworks, from building microservices architectures to developing cloud-native applications.</p>
+                <p>I created Coded Parts as a platform to share my knowledge and experience with fellow developers. My goal is to help you understand complex software engineering concepts through practical examples and real-world applications. Whether you're just starting your journey in software development or looking to level up your skills, you'll find valuable resources here.</p>
+                <p>Beyond tutorials and guides, I'm passionate about creating tools that make developers' lives easier. Every tool and resource on this platform is crafted with attention to detail and backed by years of industry experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/terms">Terms & Conditions</a>
+                    <a href="/privacy">Privacy Policy</a>
+                </div>
+                <div class="copyright">
+                    © <span id="year"></span> Coded Parts. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         const menuButton = document.querySelector('.menu-button');
         const navLinks = document.querySelector('.nav-links');
@@ -366,6 +473,9 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', closeNavMenu);
         });
+    </script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
