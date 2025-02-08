@@ -1,4 +1,16 @@
-const toolsContainer = document.getElementById('tools-container');
+const year = document.getElementById('year');
+year.textContent = new Date().getFullYear();
+
+const menuButton = document.querySelector('.menu-button');
+const navLinks = document.querySelector('.nav-links');
+
+
+menuButton.addEventListener('click', () => {
+    menuButton.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+const toolsContainer = document.getElementById('toolsGrid');
 
 const getToolsData = async() => {
     const response = await fetch('assets/data/tools.json');
@@ -17,7 +29,7 @@ if (toolsContainer) {
                 <div class="tool-item">
                     <h2>${tool.name}</h2>
                     <p>${tool.description}</p>
-                    <a href="${tool.url}">View Tool</a>
+                    <a href="${tool.url}">Try it →</a>
                 </div>
             `;
 

@@ -4,20 +4,339 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coded Parts | Tools</title>
-    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="https://codedparts.com/assets/img/favicon.svg" type="image/svg+xml">
     <meta property="og:title" content="Coded Parts | Tools">
     <meta property="og:description"
-        content="A collection of tools for software engineering and computer science.">
+        content="A collection of tools designed to make lives easier. From browser extensions to web utilities, find the right tool for your needs.">
     <meta property="og:image" content="https://codedparts.com/assets/img/ogimg.png">
-    <meta property="og:url" content="https://tools.codedparts.com">
+    <meta property="og:url" content="https://codedparts.com">
     <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary-black: #111111;
+            --secondary-black: #2D2D2D;
+            --primary-white: #FFFFFF;
+            --secondary-white: #F5F5F5;
+        }
+
+        body {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-white);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .menu-button {
+            display: none;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 8rem 0 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--secondary-black);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .tool-card {
+            background-color: var(--primary-white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card p {
+            color: var(--secondary-black);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tool-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .tool-category {
+            font-size: 0.9rem;
+            color: var(--secondary-black);
+            padding: 0.3rem 0.8rem;
+            background-color: var(--secondary-white);
+            border-radius: 15px;
+        }
+
+        .tool-link {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            header {
+                padding: 1rem 0;
+            }
+
+            .menu-button {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 1001;
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-button span {
+                display: block;
+                width: 25px;
+                height: 2px;
+                background-color: var(--primary-black);
+                margin: 2px 0;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -250px;
+                height: 100vh;
+                width: 250px;
+                background-color: var(--primary-black);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                display: flex;
+                gap: 1.5rem;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: var(--primary-white);
+                font-size: 1.2rem;
+                padding: 0.5rem 0;
+            }
+
+            .section-title h1 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .section-title p {
+                padding: 0 1rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Tools</h1>
-    <div id="tools-container">
-        <h2>Loading...</h2>
-    </div>
-    <script src="assets/data/tools.json"></script>
+    <header>
+        <nav class="container">
+            <a href="https://codedparts.com" class="logo">
+
+                <img src="https://codedparts.com/assets/img/logo.svg" alt="Coded Parts Logo" width="100" />
+            </a>
+            <button class="menu-button">
+                <span></span>
+
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <button class="close-menu" aria-label="Close menu"></button>
+                <a href="https://medium.com/@codedparts">Blog</a>
+                <a href="https://tools.codedparts.com">Tools</a>
+                <a href="#">Resources</a>
+                <a href="#about">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-title">
+                <h1>Tools</h1>
+                <p>A collection of tools designed to make lives easier. From browser extensions to web utilities, find the right tool for your needs.</p>
+            </div>
+            <div class="tools-grid" id="toolsGrid">
+                <h2>Loading tools...</h2>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://codedparts.com/terms.html">Terms & Conditions</a>
+                    <a href="https://codedparts.com/privacy.html">Privacy Policy</a>
+                </div>
+
+                <div class="copyright">
+                    © <span id="year"></span> Coded Parts. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
