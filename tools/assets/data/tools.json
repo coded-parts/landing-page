@@ -1,0 +1,14 @@
+{
+    "tools": [
+        {
+            "name": "OGraph Previewer",
+            "description": "A Chrome extension to preview & export your open graph data on live & local sites.",
+            "url": "https://chromewebstore.google.com/detail/ograph-previewer/ggcfeakcnodgcmmllfdbmngekljbhiim"
+        },
+        {
+            "name": "Social Text Formatter",
+            "description": "A tool to render rich text on LinkedIn & BlueSky.",
+            "url": "https://tools.codedparts.com/social-text-formatter"
+        }
+    ]
+}
