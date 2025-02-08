@@ -71,15 +71,13 @@ const searchTools = (searchQuery) => {
 }
 
 
-const filterByCategory = (category) => {
-    return category === 'all' ? filteredTools : filteredTools.filter(tool => tool.category === category);
+const filterByCategory = (category, list = filteredTools) => {
+    return category === 'all' ? list : list.filter(tool => tool.category === category);
 }
 
-
-const filterByPaymentType = (paymentType) => {
-    return paymentType === 'all' ? filteredTools : filteredTools.filter(tool => tool.payment === paymentType);
+const filterByPaymentType = (paymentType, list = filteredTools) => {
+    return paymentType === 'all' ? list : list.filter(tool => tool.payment === paymentType);
 }
-
 
 const filtersProxy = new Proxy(filters, {
     set(target, prop, value){
@@ -92,14 +90,15 @@ const filtersProxy = new Proxy(filters, {
                 setFilteredToolsData(searchResults);
                 populateTools();
                 break;
-
             case 'selectedCategory':
                 const categoryFilteredTools = filterByCategory(value);
-                populateTools(categoryFilteredTools);
+                const paymentFilteredTools = filterByPaymentType(target.selectedPaymentType, categoryFilteredTools);
+                populateTools(paymentFilteredTools);
                 break;
             case 'selectedPaymentType':
-                const paymentFilteredTools = filterByPaymentType(value);
-                populateTools(paymentFilteredTools);
+                const paymentFilteredList = filterByPaymentType(value);
+                const categoryFilteredList = filterByCategory(target.selectedCategory, paymentFilteredList);
+                populateTools(categoryFilteredList);
                 break;
         }
         return true;
