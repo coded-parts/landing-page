@@ -27,16 +27,17 @@ if (toolsContainer) {
         tools.forEach(tool => {
             toolMarkup = `
                 <a class="tool-item" href="${tool.url}">
+                    <span class="tool-meta-badge">${tool.source}</span>
                     <h2>${tool.name}</h2>
                     <p>${tool.description}</p>
                     <span>Try it →</span>
-                    <span class="tool-item-footer">
+                    <div class="tool-item-footer">
                         <span class="tool-item-footer-item">${tool.category}</span>
                         <span class="tool-item-footer-item">${tool.type}</span>
-                    </span>
-
+                    </div>
                 </a>
             `;
+
 
 
             toolsMarkupElements.push(toolMarkup);

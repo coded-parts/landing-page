@@ -6,6 +6,7 @@
             "url": "https://chromewebstore.google.com/detail/ograph-previewer/ggcfeakcnodgcmmllfdbmngekljbhiim",
             "type": "chrome-extension",
             "category": "developer-tools",
+            "source": "open-source",
             "paid": false
         },
         {
@@ -14,7 +15,18 @@
             "url": "https://tools.codedparts.com/social-text-formatter",
             "type": "web-app",
             "category": "social-media",
+            "source": "open-source",
+            "paid": false
+        },
+        {
+            "name": "Dunkel Morgen",
+            "description": "A dark theme for VS Code with prominent black and yellow colors.",
+            "url": "https://marketplace.visualstudio.com/items?itemName=ParthipanNatkunam.dunkel-morgen",
+            "type": "vs-code-theme",
+            "category": "developer-tools",
+            "source": "open-source",
             "paid": false
         }
     ]
+
 }
