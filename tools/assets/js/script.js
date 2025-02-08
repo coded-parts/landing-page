@@ -28,7 +28,7 @@ const renderTools = (data = filteredTools) => {
     const toolsMarkupElements = [];
 
     data.forEach(tool => {
-        toolMarkup = `
+        const toolMarkup = `
             <a class="tool-item" href="${tool.url}">
                 <span class="tool-meta-badge">${tool.source}</span>
                 <h2>${tool.name}</h2>
