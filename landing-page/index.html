@@ -72,9 +72,6 @@
             display: none;
         }
 
-        .close-menu {
-            display: none;
-        }
 
         .nav-links a {
             color: var(--primary-black);
@@ -85,6 +82,8 @@
 
         .nav-links a:hover {
             color: var(--secondary-black);
+            transform: scale(1.05);
+            transition: all 0.1s ease-in;
         }
 
         /* Hero Section */
@@ -263,8 +262,12 @@
                 transition: all 0.3s ease;
             }
 
+            .menu-button.active span{
+                background-color: var(--primary-white);
+            }
+
             .menu-button.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+                transform: rotate(45deg) translate(8px);
             }
 
             .menu-button.active span:nth-child(2) {
@@ -272,32 +275,7 @@
             }
 
             .menu-button.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            .close-menu::before,
-            .close-menu::after {
-                content: '';
-                position: absolute;
-                width: 20px;
-                height: 2px;
-                background-color: var(--primary-white);
-                top: 50%;
-                left: 50%;
-                transition: background-color 0.3s ease;
-            }
-
-            .close-menu::before {
-                transform: translate(-50%, -50%) rotate(45deg);
-            }
-
-            .close-menu::after {
-                transform: translate(-50%, -50%) rotate(-45deg);
-            }
-
-            .close-menu:hover::before,
-            .close-menu:hover::after {
-                background-color: #999;
+                transform: rotate(-45deg) translate(8px);
             }
 
             .nav-links.active {
@@ -354,19 +332,11 @@
                 padding: 0.5rem 0;
             }
 
-            .close-menu {
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-                background: none;
-                border: none;
-                cursor: pointer;
-                width: 30px;
-                height: 30px;
-                padding: 0;
-                display: block;
+            .nav-links a:hover {
+                color: var(--primary-white);
+                transition: all 0.1s ease-in;
+                border-bottom: 2px solid var(--primary-white);
             }
-
             .footer-content {
                 flex-direction: column;
                 text-align: center;
@@ -403,7 +373,7 @@
     <div class="overlay"></div>
     <header>
         <nav class="container">
-            <a href="#" class="logo">
+            <a href="/" class="logo">
                 <img src="assets/img/logo.svg" alt="Coded Parts Logo" width="100" />
             </a>
             <button class="menu-button">
@@ -412,7 +382,6 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <button class="close-menu" aria-label="Close menu"></button>
                 <a href="https://medium.com/@codedparts">Blog</a>
                 <a href="https://tools.codedparts.com">Tools</a>
                 <a href="#">Resources</a>
@@ -481,7 +450,6 @@
         const menuButton = document.querySelector('.menu-button');
         const navLinks = document.querySelector('.nav-links');
         const overlay = document.querySelector('.overlay');
-        const closeMenu = document.querySelector('.close-menu');
 
         function closeNavMenu() {
             menuButton.classList.remove('active');
@@ -496,7 +464,6 @@
         });
 
         overlay.addEventListener('click', closeNavMenu);
-        closeMenu.addEventListener('click', closeNavMenu);
 
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {

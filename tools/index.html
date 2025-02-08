@@ -81,6 +81,12 @@
             transition: color 0.3s ease;
         }
 
+        .nav-links a:hover {
+            color: var(--secondary-black);
+            transform: scale(1.05);
+            transition: all 0.1s ease-in;
+        }
+
         .menu-button {
             display: none;
         }
@@ -317,10 +323,17 @@
                 padding: 0.5rem 0;
             }
 
+            .nav-links a:hover {
+                color: var(--primary-white);
+                transition: all 0.1s ease-in;
+                border-bottom: 2px solid var(--primary-white);
+            }
+
             .section-title h1 {
                 font-size: 2rem;
                 padding: 0 1rem;
             }
+
 
             .section-title p {
                 padding: 0 1rem;
