@@ -1,8 +1,11 @@
+import { liveTools } from '../data/tools.js';
+
 let toolsContainer;
 let toolsNotification;
 
 let toolsData = [];
 let filteredTools = [];
+
 
 const filters = {
     searchQuery: '',
@@ -105,14 +108,6 @@ const filtersProxy = new Proxy(filters, {
     }
 });
 
-
-
-const getToolsDataFromFile = async() => {
-    const response = await fetch('assets/data/tools.json');
-    const toolsData = await response.json();
-    return toolsData.tools;
-}
-
 const populateYear = () => {    
     const year = document.getElementById('year');
     year.textContent = new Date().getFullYear();
@@ -202,17 +197,17 @@ const addListeners = () => {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+const init = () => {
     toolsContainer = document.getElementById('toolsGrid');
     toolsNotification = document.querySelector('.tools-notification');
 
-    getToolsDataFromFile().then(tools => {
-        toolsData = tools;
-        filteredTools = tools;
-        populateYear();
-        addListeners();
-        populateTools();
-        populateCategories();
-        populatePaymentTypes();
-    });
-});
+    toolsData = liveTools;
+    filteredTools = liveTools;
+    populateYear();
+    addListeners();
+    populateTools();
+    populateCategories();
+    populatePaymentTypes();
+};
+
+init();

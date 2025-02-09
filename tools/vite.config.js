@@ -1,16 +1,15 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import htmlMinifier from 'vite-plugin-html-minifier';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
-  root: './',
   base: './',
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    minify: 'terser',
+    assetsDir: 'assets',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: 'index.html'
       },
       output: {
         entryFileNames: 'assets/js/[name].[hash].js',
@@ -18,19 +17,20 @@ export default defineConfig({
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
-          if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(assetInfo.name)) {
-            return 'assets/images/[name].[hash][extname]';
+          if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/media/[name].[hash].${ext}`;
           }
-          if (/\.css$/.test(assetInfo.name)) {
-            return 'assets/css/[name].[hash][extname]';
+          if (/\.(png|jpe?g|gif|svg|ico|webp)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/img/[name].[hash].${ext}`;
           }
-          if (/\.(woff2?|eot|ttf|otf)$/.test(assetInfo.name)) {
-            return 'assets/fonts/[name].[hash][extname]';
+          if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/fonts/[name].[hash].${ext}`;
           }
-          return `assets/${ext}/[name].[hash][extname]`;
+          return `assets/[name].[hash].${ext}`;
         }
       }
     },
+    minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
@@ -38,8 +38,21 @@ export default defineConfig({
       }
     }
   },
-  server: {
-    open: true,
-    port: 3000
-  }
-}); 
+  plugins: [
+    htmlMinifier({
+      minify: true,
+      collapseWhitespace: true,
+      removeComments: true,
+      minifyJS: true,
+      minifyCSS: true
+    }),
+    createHtmlPlugin({
+      minify: true,
+      inject: {
+        data: {
+          injectScript: '<script type="module" src="/assets/js/script.js"></script>'
+        }
+      }
+    })
+  ]
+});
