@@ -26,7 +26,7 @@ export const liveTools = [
         "type": "vs-code-theme",
         "category": "Developer Tool",
         "source": "open-source",
-        "payment": "paid"
+        "payment": "free"
 
     }
 ];
